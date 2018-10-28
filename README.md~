@@ -14,7 +14,7 @@ First open Gazebo by typing:
 
 	roslaunch turtlebot_gazebo turtlebot_world.launch
 
-Then, open a new console tab for each command below in order to run the kalman filter node.
+Then, open a new console and run the command below in order to run the kalman filter node.
 
 	rosrun robot_pose_ekf robot_pose_ekf
 

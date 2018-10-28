@@ -30,3 +30,9 @@ Change directory to catkin_ws/devel/lib/turtlebot_quare_move/ and open a new con
 Inspect the behavior of the turtlebot by listening the odometry topic, typing on console:
 
 	rostopic echo /odom
+
+Further information and video examples available on links below:
+
+	https://youtu.be/5IxxvqW-zpw
+	https://youtu.be/QoWjGa4DUuw
+
