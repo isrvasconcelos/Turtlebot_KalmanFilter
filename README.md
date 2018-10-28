@@ -15,7 +15,6 @@ Then, open a new console tab for each command below in order to run the kalman f
 	roslaunch robot_pose_ekf robot_pose_ekf.launch
 	rosrun robot_pose_ekf robot_pose_ekf
 
-
 Change directory to catkin_ws/devel/lib/robot_localization/ and open a new console inside this folder, running:
 	./ekf_localization_node
 
