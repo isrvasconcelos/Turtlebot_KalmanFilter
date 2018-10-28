@@ -11,11 +11,9 @@ Gazebo simulation comparing attempts to draw a square using Kobuki on gazebo wit
 	First open Gazebo by typing:
 		roslaunch turtlebot_gazebo turtlebot_world.launch
 
-	Then, open a new console tab run the kalman filter node.
+	Then, open new tabs for each line shown below, on your console and run the commands on this sequence.
 		roslaunch robot_pose_ekf robot_pose_ekf
+		rostopic echo /odom
 
 	Change directory to catkin_ws/devel/lib/turtlebot_quare_move/ and open a new console inside this folder, running:
 		./turtlebot_quare_move
-
-	Inspect the behavior of the turtlebot by listening the odometry topic, typing on console:
-		rostopic echo /odom
