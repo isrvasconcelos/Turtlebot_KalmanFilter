@@ -1,0 +1,75 @@
+#include "ros/ros.h"
+#include "geometry_msgs/Twist.h"
+#include <iostream>
+#include <stdlib.h>
+#include <tuple>
+
+#define TIME_STEP 0.1
+#define PI 3.14159265
+
+using namespace std;
+
+int main(int argc, char **argv) {
+
+	ros::init(argc, argv, "node");
+	ros::NodeHandle n;
+	ros::Publisher pub = n.advertise<geometry_msgs::Twist>("/cmd_vel_mux/input/teleop", 1000);
+	ros::Rate loop_rate(1/TIME_STEP);
+
+	double timestamp, walk_time, turn_time; //<! Time in seconds
+	double linear_speed, angular_speed; //<! m/s and rad/s
+	double square_edge; //<! Length in meters
+
+	square_edge = 1;
+	linear_speed = 0.5;
+	angular_speed = 0.825;
+
+	walk_time = square_edge/linear_speed;
+	turn_time =  (PI/2)/angular_speed;//1.65/angular_speed;
+
+	for(int i=0; i<4*(4); i++) {
+
+		//<! Walk on a straight line
+		timestamp=0;
+		cout << "Walking straight" << endl;
+		while(ros::ok() && timestamp < walk_time) {
+
+			geometry_msgs::Twist myTwistMsg;
+
+			myTwistMsg.linear.x = linear_speed; //<! linear speed m/s
+			myTwistMsg.linear.y = 0;
+			myTwistMsg.linear.z = 0;
+
+			pub.publish(myTwistMsg);
+
+			cout << timestamp << "s" << endl;
+			timestamp = timestamp+TIME_STEP;
+
+			ros::Duration(TIME_STEP).sleep();
+		}
+
+		ros::Duration(0.5).sleep();
+
+		//<! Turn aside on 90 degrees
+		timestamp=0;
+		cout << "Turning." << endl;
+		while(ros::ok() && timestamp < turn_time) {
+
+			geometry_msgs::Twist myTwistMsg;
+
+			myTwistMsg.angular.x = 0;
+			myTwistMsg.angular.y = 0;
+			myTwistMsg.angular.z = angular_speed; //<! angular rad/s
+
+			pub.publish(myTwistMsg);
+
+			cout << timestamp << "s" << endl;
+			timestamp = timestamp+TIME_STEP;
+
+			ros::Duration(TIME_STEP).sleep();
+		}
+	}
+
+
+	return 0;
+}
