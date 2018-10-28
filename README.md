@@ -12,10 +12,14 @@ First open Gazebo by typing:
 	roslaunch turtlebot_gazebo turtlebot_world.launch
 
 Then, open a new console tab run the kalman filter node.
-	roslaunch robot_pose_ekf robot_pose_ekf
+	roslaunch robot_pose_ekf robot_pose_ekf.launch
+	rosrun robot_pose_ekf robot_pose_ekf
 
 Change directory to catkin_ws/devel/lib/turtlebot_quare_move/ and open a new console inside this folder, running:
 	./turtlebot_quare_move
+
+Change directory to catkin_ws/devel/lib/robot_localization/ and open a new console inside this folder, running:
+	./ekf_localization_node
 
 Inspect the behavior of the turtlebot by listening the odometry topic, typing on console:
 	rostopic echo /odom
